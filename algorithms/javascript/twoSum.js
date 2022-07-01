@@ -27,7 +27,7 @@ const twoSum = (nums, target) => {
     // edge case === if null
     if(!nums) return;
     // edge case === if an array size of 1 is target
-    if(nums[0] === target) return [nums[0]];
+    if(length === 1 && nums[0] === target) return [nums[0]];
 
 
     for(let i = 0; i < length; i++) {
