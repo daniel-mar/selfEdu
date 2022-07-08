@@ -1,0 +1,55 @@
+Full Stack Application setup, practice through repetition.
+
+1) create package.json with:
+    npm init -y
+    
+2) insteall depencencies for backend, db, server, middleware
+    npm i mongoose express cors
+
+3)
+    create server.js file
+
+4) 
+    server folder
+
+5)
+    inside of server folder create 4 folders,
+        config, controllers, models, routes.
+
+6)
+    establish front-end with:
+        npm create-react-app client
+
+7) cd into client folder
+    cd client
+
+8) install axios for making request in our client:
+    npm i axios react-router-dom@5
+        consider learning the react18 version of this.
+
+9) within client, create a new components folder
+        within components create: 
+            Main.js
+        Where you can import {useEffect, useState} from react and axios. 
+
+DONE WITH MODULARIZATION -- PROCEED TO SERVER FOLDERS SETUP
+-- understanding the modularization process --
+
+1) config folder > copy over mongoose.config file
+        this will not change, except the db name. BONUS: Setup Mongoose for cloud db.
+        file will also set up responses for successful or error connecting to db / models / validations.
+
+2) Setup the model files for all of your schemas / data types.
+    model folder > ex: {singular-text-name}.model.js
+        Allowing our controller to perform CRUD operations. 
+    Controller calls the models to the routes folder to send back data per page request.
+
+3) Import the model for the collection (aka: table in our db).
+    To perform CRUD operations with our soon to be made routes.
+        Exporting from models, allows us to import and use the User model in any file.
+        Because of our modularization within our application.
+            Which then heads to our routing.
+
+4) After schema / models are created AND after importing those within our controllers.
+    We can navigate through your routes and retrieve the necessary queries per route.
+    Finally, you can go to server.js that we created at the start and begin testing your routes.
