@@ -81,4 +81,57 @@ DONE WITH MODULARIZATION -- PROCEED TO SERVER FOLDERS SETUP
 
 
 
-FROM THERE, we can move forward and work on validations
+FROM THERE, we can move forward and work on validations.
+    - We can add these into our existing models, we could have done them at once.
+        but, understanding the steps are important
+        maybe validations may not be required depending on the project.
+
+Example:
+    const UserSchema = new mongoose.Schema({
+    name: String,
+    age: Number
+    }, { timestamps: true });
+
+    We can have this be more detailed == 
+
+    const UserSchema = new mongoose.Schema({
+    first_name: String,
+    last_name: String,
+    age: Number
+    }, 
+    email: {
+    }, 
+    { timestamps: true }
+);
+
+    Now, we can add our validations to understand it better.
+
+    const UserSchema = new mongoose.Schema({
+    first_name: {
+        type: String,
+        required: [true, "First Name is required"],
+        minlength: [6, "First name must be at least 6 characters long"]
+    },
+    last_name: {
+        type: String,
+        required: [true, "Last name is required"],
+        minlength: [6, "First name must be at least 6 characters long"],
+        maxlength: [20, "Last name must be at most 20 characters long"]
+    },
+    age: {
+        type: Number,
+        min: [1, "You must be at least 1 or older to register"],
+        max: [150, "You must be at most 118 years old to register"]
+    },
+    email: {
+        type: String, required: [true, "Email is required"] 
+    }
+}, { timestamps: true });
+
+    Notice that we are able to establish minimum and maximum values at the same time if we want to.
+    How it changed from a simple User model
+
+    const UserSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+    }, { timestamps: true });

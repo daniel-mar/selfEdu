@@ -19,9 +19,29 @@ const mongoose = require('mongoose');
 
 // NOTE: String, is shorthand for { type: String }
 // There is no need for the ' , { timestamps: true } ' as well.
+// Added validations, although you may add to your collection first
+// Then add the validations after, so far I have not inserted data via Postman.
+
 const UserSchema = new mongoose.Schema({
-    name: String,
-    age: Number
+    first_name: {
+        type: String,
+        required: [true, "First Name is required"],
+        minlength: [6, "First name must be at least 6 characters long"]
+    },
+    last_name: {
+        type: String,
+        required: [true, "Last name is required"],
+        minlength: [6, "First name must be at least 6 characters long"],
+        maxlength: [20, "Last name must be at most 20 characters long"]
+    },
+    age: {
+        type: Number,
+        min: [1, "You must be at least 1 or older to register"],
+        max: [150, "You must be at most 118 years old to register"]
+    },
+    email: {
+        type: String, required: [true, "Email is required"]
+    }
 }, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);
