@@ -48,6 +48,9 @@ DONE WITH MODULARIZATION -- PROCEED TO SERVER FOLDERS SETUP
  ** At this moment, your db information should be secured and within a .gitignore
  ** A successful connection between server and your database has been established.
 
+* Refer to models > user.model.js - for a default example of setting up your db
+    * Once you create your first document, Mongoose will create your DB.
+    
 2) Setup the model files for all of your schemas / data types.
     model folder > ex: {singular-text-name}.model.js
         Allowing our controller to perform CRUD operations. 
