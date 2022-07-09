@@ -64,4 +64,21 @@ DONE WITH MODULARIZATION -- PROCEED TO SERVER FOLDERS SETUP
 
 4) After schema / models are created AND after importing those within our controllers.
     We can navigate through your routes and retrieve the necessary queries per route.
-    Finally, you can go to server.js that we created at the start and begin testing your routes.
+
+5) Finally, you can go to server.js that we created at the start and begin testing your routes.
+    Begin by heading back to your terminal and running
+        nodemon server.js
+
+    == DEBUGGING ==
+- Make sure the MongoDB server is running ('mongod' command).
+- Make sure your post data matches the data that you are inserting into the database.
+    In our example that is the (name and age).
+- Make sure that the form submits a post request to '/users'.
+- Assure that mongoose was installed (early steps).
+- Check the order of everything related to mongoose.
+    (require => connect => Schema => Model => route)
+- Use console.log statements to follow the flow of your data.
+
+
+
+FROM THERE, we can move forward and work on validations

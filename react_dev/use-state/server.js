@@ -24,11 +24,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // -- Step 3 --
-// Routes
-// require("./server/routes/pet.routes")(app);
-
 // Connection to DB, if error, check on correct file structures and file nomenclature.
+// May not need to inclue the .js, for my purposes in React18 + Cloud (Backend), it has been required.
 require("./server/config/mongoose.config.js");
+
+// Routes
+const AllMyUserRoutes = require('./server/routes/user.routes');
+AllMyUserRoutes(app);
 
 // Custom Response on Succesful connection to our backend
 app.listen(port, () => console.log(`Listening on port: ${port}`));
