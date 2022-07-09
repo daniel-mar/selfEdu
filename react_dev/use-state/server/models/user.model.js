@@ -16,10 +16,13 @@
  */
 
 const mongoose = require('mongoose');
+
+// NOTE: String, is shorthand for { type: String }
+// There is no need for the ' , { timestamps: true } ' as well.
 const UserSchema = new mongoose.Schema({
     name: String,
     age: Number
-});
+}, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);
 
