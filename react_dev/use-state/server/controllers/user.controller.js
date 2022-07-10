@@ -57,16 +57,16 @@ module.exports.deleteAnExistingUser = (req, res) => {
 // CRUD functionality is done, can begin creating your routes.
 // -- BONUS --
 // Create User Validate for uniqueness before creating new DB Entry.
-    User.exists({ name: req.body.name })
-        .then(userExists => {
-            if (userExists) {
-                // Promise.reject() will activate the .catch() below.
-                return Promise.reject('Error Message Goes Here');
-            }
-            return User.create(req.body);
-        })
-        .then(saveResult => res.json(saveResult))
-        .catch(err => res.json(err));
+    // User.exists({ name: req.body.name })
+    //     .then(userExists => {
+    //         if (userExists) {
+    //             // Promise.reject() will activate the .catch() below.
+    //             return Promise.reject('Error Message Goes Here');
+    //         }
+    //         return User.create(req.body);
+    //     })
+    //     .then(saveResult => res.json(saveResult))
+    //     .catch(err => res.json(err));
 
 // -- ALTERNATIVE METHODS --
 // Finding all Users - retrieves an array of all documents in the User collection

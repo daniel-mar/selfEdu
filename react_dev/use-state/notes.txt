@@ -135,3 +135,80 @@ Example:
         name: String,
         age: Number
     }, { timestamps: true });
+
+        ====== AFTER VALIDATIONS ======
+        ====== Nested Documents =======
+
+We have Nested Documents - MongoDB is NoSQL, so we do not deal with joins. We do nested documents.
+Dealing with JSON objects allows us to store any data type, (arrays and nested objects)!
+    All within a single object.. NOTE: that a nested document schema is COMPLETED SEPARATE of
+    regular mongoose documents.
+
+Example: A User schema that can have MANY friends may look like the following.
+    const UserSchema = new mongoose.Schema({
+        fName: String,
+        lName: String,
+        friends: [UserSchema]
+    });
+
+    - There should be caution because it is possible to store duplicates in the DB.
+
+Example 2: Banking Application may have a User Schema like the following. 
+
+./user.model.js
+
+    const UserSchema = new mongoose.Schema({
+        fName: String,
+        lName: String,
+        email: String,
+        password: String,
+        bankAccounts: [BankAccountSchema]
+    },
+    { timestamps: true }
+);
+
+    - Because a User may have many bank accounts, the relationship is determined by nesting
+        their BankAccountSchema into an array. Meaning the fields bankAccounts will be an array
+        of nothing but BankAccount objects. 
+
+    - Continuing with the BankAccountSchema, each Bank Account can have MANY transactions and so
+        we can nest a TransactionSchema into our BankAccountSchema:
+    
+    Example 3: User, has MANY Bank Accounts that have MANY Transactions.
+
+./bank.model.js
+
+    const TransactionSchema = new mongoose.Schema(
+        {
+            amount: { type: Number, required: true},
+            vendor: { type: String, required: true}
+        },
+        { timestamps: { createdAt: true } }
+    );
+
+    const BankAccountSchema = new mongoose.Schema(
+        {
+            accountType: { type: String, required: true },
+            balanace: { type: Number, default: 0 },
+            transactions: [TransactionSchema]
+        },
+        { timestamps: true }
+    );
+
+======= FULL STACK DEVELOPMENT =======
+    At this point, we should have our project modularized, installed what is necessary 
+    for Full Stack Development. Also our backend should be ready, possibly DB schemas established as well.
+        It is possible to even have POSTMAN to test our functionality in our new DB.
+        All BEFORE we even begin to do Front End Development and adding forms + components.
+    
+    We should be have 2 consoles running, remember you can rename them. So I would suggest to
+    have 1 console running (renamed + recolor in VSCode). Using:
+        nodemon server.js
+    Opening your second console (rename + recolor), and while in the client folder, running our Front End:
+        npm run start
+    
+    From there we will utilized Axios (should be already installed).
+        To have the REACT project communicate with our server. 
+        NOTE: REACT does not care aboue the language running in the server!!
+            That means, our server could be JAVA based (keep up the studying).
+        React will make requests and get responses.
