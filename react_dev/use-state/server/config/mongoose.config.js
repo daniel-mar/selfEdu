@@ -5,20 +5,16 @@ const {config} = require('dotenv');
 // The following is Bonus: for securing credentials (paired with server.js).
 // module.exports to import file in our server for secure communication.
 module.exports = () => {
-        // Invoke dotenv config
+        // Invoke dotenv config availability of variables
         config();
         // Establish our uri with dotenv
-        const uri = process.env.DB_URI;
+    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@dclstor.vddhv.mongodb.net/test`;
         // Passing two parameters ('connection_string', {options});
-        // Our creds are passed as options rather than within our connection string.
-        // We also removed deprecated options of useFindAndModify + useCreateIndex
+        // Our creds or db info are passed as options rather than within our connection string.
+        // We also removed deprecated options of useFindAndModify + useCreateIndex, etc.
         // Our connect method returns a PROMISE, so we use .then(), .catch()
         connect(uri, {
             dbName: process.env.DB_NAME,
-            user: process.env.DB_USER,
-            pass: process.env.DB_PASS,
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
         })
         .then(() => {
             console.log('Connection to DB Established');

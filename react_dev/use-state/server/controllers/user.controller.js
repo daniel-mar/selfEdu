@@ -33,7 +33,7 @@ module.exports.findOneSingleUser = (req, res) => {
 module.exports.createNewUser = (req, res) => {
     User.create(req.body)
         .then(newlyCreatedUser => res.json({ user: newlyCreatedUser }))
-        .catch(err => res.json({ message: `Couldn't create a new user.`, error: err}));
+        .catch(err => res.json({ message: 'Could not create a new user', error: err}));
 }
 
 // -- UPDATE --
